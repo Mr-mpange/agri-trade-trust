@@ -110,13 +110,13 @@ class Database {
       // Agriculture Suppliers
       {
         id: 'SUP001',
-        name: 'Kamau Farms',
-        phone: '+254711000001',
-        location: 'Nairobi',
+        name: 'Mwanza Farms',
+        phone: '+255712000001',
+        location: 'Dar es Salaam',
         category: 'agriculture',
         products: [
-          { type: 'maize', category: 'agriculture', quantity: 500, price: 4500, unit: 'kg' },
-          { type: 'rice', category: 'agriculture', quantity: 300, price: 8000, unit: 'kg' }
+          { type: 'maize', category: 'agriculture', quantity: 500, price: 45000, unit: 'kg' },
+          { type: 'rice', category: 'agriculture', quantity: 300, price: 80000, unit: 'kg' }
         ],
         completedOrders: 98,
         failedOrders: 2,
@@ -127,13 +127,13 @@ class Database {
       },
       {
         id: 'SUP002',
-        name: 'Njeri Agro Supplies',
-        phone: '+254711000002',
-        location: 'Nakuru',
+        name: 'Arusha Agro Supplies',
+        phone: '+255712000002',
+        location: 'Arusha',
         category: 'agriculture',
         products: [
-          { type: 'maize', category: 'agriculture', quantity: 400, price: 4200, unit: 'kg' },
-          { type: 'fertilizer', category: 'agriculture', quantity: 200, price: 3500, unit: 'kg' }
+          { type: 'maize', category: 'agriculture', quantity: 400, price: 42000, unit: 'kg' },
+          { type: 'fertilizer', category: 'agriculture', quantity: 200, price: 35000, unit: 'kg' }
         ],
         completedOrders: 87,
         failedOrders: 13,
@@ -144,13 +144,13 @@ class Database {
       },
       {
         id: 'SUP003',
-        name: 'Mwangi Seeds Co',
-        phone: '+254711000003',
-        location: 'Eldoret',
+        name: 'Dodoma Seeds Co',
+        phone: '+255712000003',
+        location: 'Dodoma',
         category: 'agriculture',
         products: [
-          { type: 'seeds', category: 'agriculture', quantity: 150, price: 2500, unit: 'kg' },
-          { type: 'maize', category: 'agriculture', quantity: 250, price: 4300, unit: 'kg' }
+          { type: 'seeds', category: 'agriculture', quantity: 150, price: 25000, unit: 'kg' },
+          { type: 'maize', category: 'agriculture', quantity: 250, price: 43000, unit: 'kg' }
         ],
         completedOrders: 72,
         failedOrders: 8,
@@ -163,14 +163,14 @@ class Database {
       // Electronics Suppliers
       {
         id: 'SUP004',
-        name: 'TechHub Kenya',
-        phone: '+254711000004',
-        location: 'Nairobi',
+        name: 'TechHub Tanzania',
+        phone: '+255712000004',
+        location: 'Dar es Salaam',
         category: 'electronics',
         products: [
-          { type: 'phone', category: 'electronics', brand: 'Samsung', model: 'Galaxy A14', quantity: 50, price: 15000, unit: 'piece' },
-          { type: 'phone', category: 'electronics', brand: 'Tecno', model: 'Spark 10', quantity: 80, price: 12000, unit: 'piece' },
-          { type: 'laptop', category: 'electronics', brand: 'HP', model: '15s', quantity: 20, price: 45000, unit: 'piece' }
+          { type: 'phone', category: 'electronics', brand: 'Samsung', model: 'Galaxy A14', quantity: 50, price: 450000, unit: 'piece' },
+          { type: 'phone', category: 'electronics', brand: 'Tecno', model: 'Spark 10', quantity: 80, price: 350000, unit: 'piece' },
+          { type: 'laptop', category: 'electronics', brand: 'HP', model: '15s', quantity: 20, price: 1200000, unit: 'piece' }
         ],
         completedOrders: 156,
         failedOrders: 4,
@@ -181,14 +181,14 @@ class Database {
       },
       {
         id: 'SUP005',
-        name: 'Gadget World',
-        phone: '+254711000005',
-        location: 'Mombasa',
+        name: 'Mwanza Gadgets',
+        phone: '+255712000005',
+        location: 'Mwanza',
         category: 'electronics',
         products: [
-          { type: 'phone', category: 'electronics', brand: 'Samsung', model: 'Galaxy A14', quantity: 40, price: 14500, unit: 'piece' },
-          { type: 'phone', category: 'electronics', brand: 'Infinix', model: 'Hot 30', quantity: 60, price: 11000, unit: 'piece' },
-          { type: 'accessories', category: 'electronics', name: 'Earphones', quantity: 200, price: 500, unit: 'piece' }
+          { type: 'phone', category: 'electronics', brand: 'Samsung', model: 'Galaxy A14', quantity: 40, price: 440000, unit: 'piece' },
+          { type: 'phone', category: 'electronics', brand: 'Infinix', model: 'Hot 30', quantity: 60, price: 320000, unit: 'piece' },
+          { type: 'accessories', category: 'electronics', name: 'Earphones', quantity: 200, price: 15000, unit: 'piece' }
         ],
         completedOrders: 134,
         failedOrders: 16,
@@ -201,14 +201,14 @@ class Database {
       // Retail Goods Suppliers
       {
         id: 'SUP006',
-        name: 'Fashion Hub',
-        phone: '+254711000006',
-        location: 'Nairobi',
+        name: 'Fashion Hub DSM',
+        phone: '+255712000006',
+        location: 'Dar es Salaam',
         category: 'retail',
         products: [
-          { type: 'clothing', category: 'retail', name: 'T-Shirt', size: 'M', quantity: 100, price: 800, unit: 'piece' },
-          { type: 'clothing', category: 'retail', name: 'Jeans', size: 'L', quantity: 50, price: 1500, unit: 'piece' },
-          { type: 'shoes', category: 'retail', name: 'Sneakers', size: '42', quantity: 30, price: 2500, unit: 'pair' }
+          { type: 'clothing', category: 'retail', name: 'T-Shirt', size: 'M', quantity: 100, price: 25000, unit: 'piece' },
+          { type: 'clothing', category: 'retail', name: 'Jeans', size: 'L', quantity: 50, price: 45000, unit: 'piece' },
+          { type: 'shoes', category: 'retail', name: 'Sneakers', size: '42', quantity: 30, price: 75000, unit: 'pair' }
         ],
         completedOrders: 210,
         failedOrders: 10,
@@ -219,14 +219,14 @@ class Database {
       },
       {
         id: 'SUP007',
-        name: 'Beauty Essentials',
-        phone: '+254711000007',
-        location: 'Kisumu',
+        name: 'Beauty Essentials TZ',
+        phone: '+255712000007',
+        location: 'Arusha',
         category: 'retail',
         products: [
-          { type: 'cosmetics', category: 'retail', name: 'Lipstick', brand: 'MAC', quantity: 80, price: 1200, unit: 'piece' },
-          { type: 'cosmetics', category: 'retail', name: 'Foundation', brand: 'Maybelline', quantity: 60, price: 1800, unit: 'piece' },
-          { type: 'skincare', category: 'retail', name: 'Face Cream', quantity: 100, price: 900, unit: 'piece' }
+          { type: 'cosmetics', category: 'retail', name: 'Lipstick', brand: 'MAC', quantity: 80, price: 35000, unit: 'piece' },
+          { type: 'cosmetics', category: 'retail', name: 'Foundation', brand: 'Maybelline', quantity: 60, price: 50000, unit: 'piece' },
+          { type: 'skincare', category: 'retail', name: 'Face Cream', quantity: 100, price: 28000, unit: 'piece' }
         ],
         completedOrders: 189,
         failedOrders: 11,
@@ -239,14 +239,14 @@ class Database {
       // Hardware Suppliers
       {
         id: 'SUP008',
-        name: 'BuildMart Hardware',
-        phone: '+254711000008',
-        location: 'Nairobi',
+        name: 'BuildMart Tanzania',
+        phone: '+255712000008',
+        location: 'Dar es Salaam',
         category: 'hardware',
         products: [
-          { type: 'cement', category: 'hardware', brand: 'Bamburi', quantity: 500, price: 650, unit: 'bag' },
-          { type: 'iron-sheets', category: 'hardware', gauge: '30', quantity: 200, price: 850, unit: 'piece' },
-          { type: 'paint', category: 'hardware', brand: 'Crown', quantity: 100, price: 1200, unit: 'litre' }
+          { type: 'cement', category: 'hardware', brand: 'Tanga Cement', quantity: 500, price: 18000, unit: 'bag' },
+          { type: 'iron-sheets', category: 'hardware', gauge: '30', quantity: 200, price: 25000, unit: 'piece' },
+          { type: 'paint', category: 'hardware', brand: 'Crown', quantity: 100, price: 35000, unit: 'litre' }
         ],
         completedOrders: 245,
         failedOrders: 5,
@@ -257,14 +257,14 @@ class Database {
       },
       {
         id: 'SUP009',
-        name: 'Tools & More',
-        phone: '+254711000009',
-        location: 'Eldoret',
+        name: 'Mbeya Tools & More',
+        phone: '+255712000009',
+        location: 'Mbeya',
         category: 'hardware',
         products: [
-          { type: 'tools', category: 'hardware', name: 'Hammer', quantity: 150, price: 500, unit: 'piece' },
-          { type: 'tools', category: 'hardware', name: 'Drill Machine', quantity: 30, price: 8000, unit: 'piece' },
-          { type: 'plumbing', category: 'hardware', name: 'PVC Pipes', size: '1inch', quantity: 200, price: 300, unit: 'metre' }
+          { type: 'tools', category: 'hardware', name: 'Hammer', quantity: 150, price: 15000, unit: 'piece' },
+          { type: 'tools', category: 'hardware', name: 'Drill Machine', quantity: 30, price: 250000, unit: 'piece' },
+          { type: 'plumbing', category: 'hardware', name: 'PVC Pipes', size: '1inch', quantity: 200, price: 8000, unit: 'metre' }
         ],
         completedOrders: 167,
         failedOrders: 13,
@@ -277,14 +277,14 @@ class Database {
       // Wholesale Suppliers
       {
         id: 'SUP010',
-        name: 'Mega Wholesalers',
-        phone: '+254711000010',
-        location: 'Nairobi',
+        name: 'Mega Wholesalers TZ',
+        phone: '+255712000010',
+        location: 'Dar es Salaam',
         category: 'wholesale',
         products: [
-          { type: 'sugar', category: 'wholesale', brand: 'Mumias', quantity: 1000, price: 120, unit: 'kg', moq: 50 },
-          { type: 'cooking-oil', category: 'wholesale', brand: 'Elianto', quantity: 500, price: 280, unit: 'litre', moq: 20 },
-          { type: 'rice', category: 'wholesale', brand: 'Pishori', quantity: 800, price: 150, unit: 'kg', moq: 100 }
+          { type: 'sugar', category: 'wholesale', brand: 'Kagera Sugar', quantity: 1000, price: 3500, unit: 'kg', moq: 50 },
+          { type: 'cooking-oil', category: 'wholesale', brand: 'Salit', quantity: 500, price: 8000, unit: 'litre', moq: 20 },
+          { type: 'rice', category: 'wholesale', brand: 'Mwanza Rice', quantity: 800, price: 4500, unit: 'kg', moq: 100 }
         ],
         completedOrders: 312,
         failedOrders: 8,

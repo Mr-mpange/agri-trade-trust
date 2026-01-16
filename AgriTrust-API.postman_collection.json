@@ -1,0 +1,954 @@
+{
+	"info": {
+		"_postman_id": "agritrust-2026-v2",
+		"name": "AgriTrust & Trade API - Tanzania",
+		"description": "Complete API collection for AgriTrust & Trade universal commerce platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health & Status",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "List All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories",
+							"host": ["{{baseUrl}}"],
+							"path": ["categories"]
+						}
+					}
+				},
+				{
+					"name": "Get Agriculture Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories/agriculture",
+							"host": ["{{baseUrl}}"],
+							"path": ["categories", "agriculture"]
+						}
+					}
+				},
+				{
+					"name": "Get Electronics Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories/electronics",
+							"host": ["{{baseUrl}}"],
+							"path": ["categories", "electronics"]
+						}
+					}
+				},
+				{
+					"name": "Get Suppliers by Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categories/agriculture/suppliers",
+							"host": ["{{baseUrl}}"],
+							"path": ["categories", "agriculture", "suppliers"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "Get Supplier Trust Score",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/suppliers/SUP001/trust-score",
+							"host": ["{{baseUrl}}"],
+							"path": ["suppliers", "SUP001", "trust-score"]
+						}
+					}
+				},
+				{
+					"name": "List Suppliers by Product (Maize)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/suppliers/list/maize",
+							"host": ["{{baseUrl}}"],
+							"path": ["suppliers", "list", "maize"]
+						}
+					}
+				},
+				{
+					"name": "List Suppliers by Product (Phone)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/suppliers/list/phone",
+							"host": ["{{baseUrl}}"],
+							"path": ["suppliers", "list", "phone"]
+						}
+					}
+				},
+				{
+					"name": "Update Supplier Inventory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productType\": \"maize\",\n  \"quantity\": 500,\n  \"price\": 45000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/suppliers/SUP001/inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["suppliers", "SUP001", "inventory"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order - Agriculture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"buyerPhone\": \"+255700000001\",\n  \"productType\": \"maize\",\n  \"quantity\": \"50\",\n  \"supplierId\": \"SUP001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/create",
+							"host": ["{{baseUrl}}"],
+							"path": ["orders", "create"]
+						}
+					}
+				},
+				{
+					"name": "Create Order - Electronics",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"buyerPhone\": \"+255700000002\",\n  \"productType\": \"phone\",\n  \"quantity\": \"1\",\n  \"supplierId\": \"SUP004\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/create",
+							"host": ["{{baseUrl}}"],
+							"path": ["orders", "create"]
+						}
+					}
+				},
+				{
+					"name": "Track Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders/ORD-1234/track",
+							"host": ["{{baseUrl}}"],
+							"path": ["orders", "ORD-1234", "track"]
+						}
+					}
+				},
+				{
+					"name": "Supplier Confirms Dispatch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"supplierPhone\": \"+255712000001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/ORD-1234/dispatch",
+							"host": ["{{baseUrl}}"],
+							"path": ["orders", "ORD-1234", "dispatch"]
+						}
+					}
+				},
+				{
+					"name": "Buyer Confirms Delivery",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deliveryCode\": \"8473\",\n  \"buyerPhone\": \"+255700000001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/ORD-1234/confirm-delivery",
+							"host": ["{{baseUrl}}"],
+							"path": ["orders", "ORD-1234", "confirm-delivery"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Initiate Payment (Checkout)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderId\": \"ORD-1234\",\n  \"phoneNumber\": \"+255700000001\",\n  \"amount\": 45000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/checkout",
+							"host": ["{{baseUrl}}"],
+							"path": ["payments", "checkout"]
+						}
+					}
+				},
+				{
+					"name": "Payment Callback (Webhook)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"transactionId\": \"TXN123456\",\n  \"status\": \"Success\",\n  \"phoneNumber\": \"+255700000001\",\n  \"value\": \"45000\",\n  \"requestMetadata\": {\n    \"orderId\": \"ORD-1234\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/callback",
+							"host": ["{{baseUrl}}"],
+							"path": ["payments", "callback"]
+						}
+					}
+				},
+				{
+					"name": "Release Payment to Supplier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderId\": \"ORD-1234\",\n  \"supplierPhone\": \"+255712000001\",\n  \"amount\": 45000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/release",
+							"host": ["{{baseUrl}}"],
+							"path": ["payments", "release"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "SMS",
+			"item": [
+				{
+					"name": "Send SMS",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"to\": \"+255700000001\",\n  \"message\": \"Your order ORD-1234 has been dispatched!\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sms/send",
+							"host": ["{{baseUrl}}"],
+							"path": ["sms", "send"]
+						}
+					}
+				},
+				{
+					"name": "SMS Inbound - Order Command",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "ORDER MAIZE 50KG",
+									"type": "text"
+								},
+								{
+									"key": "from",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sms/inbound",
+							"host": ["{{baseUrl}}"],
+							"path": ["sms", "inbound"]
+						}
+					}
+				},
+				{
+					"name": "SMS Inbound - Track Command",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "TRACK ORD-1234",
+									"type": "text"
+								},
+								{
+									"key": "from",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sms/inbound",
+							"host": ["{{baseUrl}}"],
+							"path": ["sms", "inbound"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "USSD",
+			"item": [
+				{
+					"name": "USSD - Main Menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "sessionId",
+									"value": "ATUid_123",
+									"type": "text"
+								},
+								{
+									"key": "serviceCode",
+									"value": "*384*123#",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ussd",
+							"host": ["{{baseUrl}}"],
+							"path": ["ussd"]
+						}
+					}
+				},
+				{
+					"name": "USSD - Category Selection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "sessionId",
+									"value": "ATUid_123",
+									"type": "text"
+								},
+								{
+									"key": "serviceCode",
+									"value": "*384*123#",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ussd",
+							"host": ["{{baseUrl}}"],
+							"path": ["ussd"]
+						}
+					}
+				},
+				{
+					"name": "USSD - Select Agriculture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "sessionId",
+									"value": "ATUid_123",
+									"type": "text"
+								},
+								{
+									"key": "serviceCode",
+									"value": "*384*123#",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "1*1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ussd",
+							"host": ["{{baseUrl}}"],
+							"path": ["ussd"]
+						}
+					}
+				},
+				{
+					"name": "USSD - Select Maize",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "sessionId",
+									"value": "ATUid_123",
+									"type": "text"
+								},
+								{
+									"key": "serviceCode",
+									"value": "*384*123#",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "+255700000001",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "1*1*1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ussd",
+							"host": ["{{baseUrl}}"],
+							"path": ["ussd"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Voice",
+			"item": [
+				{
+					"name": "Initiate Voice Call",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"callFrom\": \"+255711000000\",\n  \"callTo\": \"+255700000001\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/voice/call",
+							"host": ["{{baseUrl}}"],
+							"path": ["voice", "call"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Airtime",
+			"item": [
+				{
+					"name": "Send Loyalty Airtime",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phoneNumber\": \"+255700000001\",\n  \"amount\": \"5000\",\n  \"currencyCode\": \"TZS\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airtime/send",
+							"host": ["{{baseUrl}}"],
+							"path": ["airtime", "send"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Web/Mobile API",
+			"item": [
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Get All Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/products?limit=50",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "products"],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "category",
+											"value": "electronics",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "phone",
+											"disabled": true
+										}
+									]
+								}
+							}
+						},
+						{
+							"name": "Get Product by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/products/SUP004-phone",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "products", "SUP004-phone"]
+								}
+							}
+						},
+						{
+							"name": "Search Products",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"query\": \"samsung\",\n  \"category\": \"electronics\",\n  \"filters\": {\n    \"minPrice\": 100000,\n    \"maxPrice\": 500000,\n    \"minTrustScore\": 90\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/products/search",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "products", "search"]
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Cart",
+					"item": [
+						{
+							"name": "Get Cart",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001"]
+								}
+							}
+						},
+						{
+							"name": "Add to Cart",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\": \"SUP004-phone\",\n  \"quantity\": 1\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001/add",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001", "add"]
+								}
+							}
+						},
+						{
+							"name": "Update Cart Item",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\": \"SUP004-phone\",\n  \"quantity\": 2\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001/update",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001", "update"]
+								}
+							}
+						},
+						{
+							"name": "Remove from Cart",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001/remove/SUP004-phone",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001", "remove", "SUP004-phone"]
+								}
+							}
+						},
+						{
+							"name": "Clear Cart",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001/clear",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001", "clear"]
+								}
+							}
+						},
+						{
+							"name": "Checkout",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"buyerPhone\": \"+255700000001\",\n  \"deliveryAddress\": \"123 Main St, Dar es Salaam\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/cart/+255700000001/checkout",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "cart", "+255700000001", "checkout"]
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"phoneNumber\": \"+255700000001\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"userType\": \"buyer\",\n  \"location\": \"Dar es Salaam\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users/register",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "register"]
+								}
+							}
+						},
+						{
+							"name": "Get User Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001"]
+								}
+							}
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John Updated\",\n  \"email\": \"john.new@example.com\",\n  \"location\": \"Arusha\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001"]
+								}
+							}
+						},
+						{
+							"name": "Add Delivery Address",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"label\": \"Home\",\n  \"address\": \"123 Main Street\",\n  \"city\": \"Dar es Salaam\",\n  \"region\": \"Dar es Salaam\",\n  \"isDefault\": true\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001/addresses",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001", "addresses"]
+								}
+							}
+						},
+						{
+							"name": "Add to Favorites",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"productId\": \"SUP004-phone\",\n  \"supplierId\": \"SUP004\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001/favorites",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001", "favorites"]
+								}
+							}
+						},
+						{
+							"name": "Get Order History",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001/orders?limit=20",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001", "orders"],
+									"query": [
+										{
+											"key": "limit",
+											"value": "20"
+										},
+										{
+											"key": "status",
+											"value": "delivered",
+											"disabled": true
+										}
+									]
+								}
+							}
+						},
+						{
+							"name": "Get User Statistics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/users/+255700000001/stats",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "users", "+255700000001", "stats"]
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

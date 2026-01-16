@@ -63,11 +63,11 @@ African trade and commerce face critical challenges across ALL sectors (agricult
    6. More Categories...
 4. Select Product → Enter quantity
 5. View suppliers with trust scores:
-   - Kamau Supplies ⭐⭐⭐⭐⭐ (98%) - KES 4,500
-   - Njeri Traders ⭐⭐⭐⭐ (87%) - KES 4,200
+   - Mwanza Farms ⭐⭐⭐⭐⭐ (98%) - TZS 45,000
+   - Arusha Traders ⭐⭐⭐⭐ (87%) - TZS 42,000
 6. Select supplier
 7. Confirm order
-8. Pay via M-Pesa (escrow held)
+8. Pay via M-Pesa/Tigo Pesa (escrow held)
 9. Receive SMS confirmation with tracking code
 ```
 
@@ -76,12 +76,12 @@ African trade and commerce face critical challenges across ALL sectors (agricult
 Buyer sends: ORDER PHONE SAMSUNG 1
 System replies: 
 "3 suppliers found:
-1. TechHub Kenya ⭐98% KES15,000
-2. Gadget World ⭐87% KES14,500
+1. TechHub Tanzania ⭐98% TZS450,000
+2. Mwanza Gadgets ⭐87% TZS440,000
 Reply with number to order"
 
 Buyer: 1
-System: "Order confirmed. Pay KES15,000 to 12345. Code: ORD-2847"
+System: "Order confirmed. Pay TZS450,000 to 12345. Code: ORD-2847"
 ```
 
 **More Examples:**

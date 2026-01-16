@@ -38,6 +38,11 @@ app.use('/orders', require('./routes/agri-orders'));
 app.use('/suppliers', require('./routes/agri-suppliers'));
 app.use('/payments', require('./routes/agri-payments'));
 
+// Web/Mobile API routes (4G)
+app.use('/api/products', require('./routes/api-products'));
+app.use('/api/cart', require('./routes/api-cart'));
+app.use('/api/users', require('./routes/api-users'));
+
 // 404
 app.use((req, res) => {
   res.status(404).json({ error: 'Not Found' });
