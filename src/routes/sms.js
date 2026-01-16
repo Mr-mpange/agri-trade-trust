@@ -182,7 +182,7 @@ router.post('/inbound', async (req, res) => {
         }
         else if (upperText === 'BUY' || upperText === 'ORDER') {
           // Start order flow
-          agriResponse = 'Select Category:\n1. Agriculture\n2. Electronics\n3. Retail\n4. Hardware\n5. Wholesale';
+          agriResponse = 'Welcome to AgriTrust & Trade! 🌾\n\nSelect Category:\n1. Agriculture\n2. Electronics\n3. Retail\n4. Hardware\n5. Wholesale';
           session = { step: 'select_category' };
           smsSessions.set(from, session);
         }
@@ -197,10 +197,10 @@ router.post('/inbound', async (req, res) => {
           }
         }
         else if (upperText === 'HELP' || upperText === 'MENU') {
-          agriResponse = 'AgriTrust Commands:\nBUY - Start ordering\nORDER [product] [qty] - Quick order\nTRACK [order-id] - Track order\nDial *384*34153# for USSD';
+          agriResponse = 'Welcome to AgriTrust & Trade! 🌾\n\nCommands:\nBUY - Start ordering\nORDER [product] [qty] - Quick order\nTRACK [order-id] - Track order\n\nOr dial *384*34153# for USSD menu';
         }
         else {
-          agriResponse = 'Unknown command. Send HELP for available commands or dial *384*34153# for full menu.';
+          agriResponse = 'Hello! Welcome to AgriTrust & Trade 🌾\n\nSend BUY to start ordering or HELP for commands.\n\nDial *384*34153# for full menu.';
         }
       }
       else if (session.step === 'select_category') {
