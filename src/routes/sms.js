@@ -181,6 +181,11 @@ router.post('/inbound', async (req, res) => {
       else if (upperText === 'HELP' || upperText === 'MENU') {
         agriResponse = 'AgriTrust Commands:\nORDER [product] [qty] - Place order\nTRACK [order-id] - Track order\nDial *384*123# for full menu';
       }
+      
+      // Unknown command - provide help
+      else {
+        agriResponse = 'Unknown command. Send HELP for available commands or dial *384*34153# for full menu.';
+      }
     }
 
     // Send AgriTrust response if command was recognized
