@@ -33,6 +33,7 @@ app.use('/airtime', require('./routes/airtime'));
 app.use('/whatsapp', require('./routes/whatsapp'));
 
 // AgriTrust & Trade routes
+app.use('/categories', require('./routes/categories'));
 app.use('/orders', require('./routes/agri-orders'));
 app.use('/suppliers', require('./routes/agri-suppliers'));
 app.use('/payments', require('./routes/agri-payments'));

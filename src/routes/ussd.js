@@ -24,17 +24,54 @@ router.post('/', async (req, res) => {
     return res.send(response);
   }
   
-  // AgriTrust Menu - Buy Products
+  // AgriTrust Menu - Buy Products - Show Categories
   if (text === '1') {
-    const response = 'CON Select Product:\n1. Maize\n2. Rice\n3. Seeds\n4. Fertilizer';
+    const response = 'CON Select Category:\n1. Agriculture 🌾\n2. Electronics 📱\n3. Retail Goods 🏪\n4. Hardware 🔧\n5. Wholesale 📦\n0. More...';
+    return res.send(response);
+  }
+  
+  // Category selected - show products
+  if (text.match(/^1\*[1-5]$/)) {
+    const categoryMap = { 
+      '1': { name: 'agriculture', products: ['Maize', 'Rice', 'Seeds', 'Fertilizer'] },
+      '2': { name: 'electronics', products: ['Phones', 'Laptops', 'Accessories', 'Tablets'] },
+      '3': { name: 'retail', products: ['Clothing', 'Cosmetics', 'Shoes', 'Household'] },
+      '4': { name: 'hardware', products: ['Cement', 'Iron Sheets', 'Tools', 'Paint'] },
+      '5': { name: 'wholesale', products: ['Sugar', 'Cooking Oil', 'Rice Bulk', 'Flour'] }
+    };
+    const categoryChoice = text.split('*')[1];
+    const category = categoryMap[categoryChoice];
+    
+    if (!category) {
+      return res.send('END Invalid category');
+    }
+    
+    // Store category in session
+    db.ussdSessions.set(sessionId, { category: category.name });
+    
+    let response = `CON Select Product:\n`;
+    category.products.forEach((p, i) => {
+      response += `${i + 1}. ${p}\n`;
+    });
     return res.send(response);
   }
   
   // Product selected - show suppliers
-  if (text.match(/^1\*[1-4]$/)) {
-    const productMap = { '1': 'maize', '2': 'rice', '3': 'seeds', '4': 'fertilizer' };
-    const productChoice = text.split('*')[1];
-    const productType = productMap[productChoice];
+  if (text.match(/^1\*[1-5]\*[1-4]$/)) {
+    const parts = text.split('*');
+    const categoryChoice = parts[1];
+    const productChoice = parts[2];
+    
+    const categoryMap = { 
+      '1': { name: 'agriculture', products: ['maize', 'rice', 'seeds', 'fertilizer'] },
+      '2': { name: 'electronics', products: ['phone', 'laptop', 'accessories', 'tablet'] },
+      '3': { name: 'retail', products: ['clothing', 'cosmetics', 'shoes', 'household'] },
+      '4': { name: 'hardware', products: ['cement', 'iron-sheets', 'tools', 'paint'] },
+      '5': { name: 'wholesale', products: ['sugar', 'cooking-oil', 'rice', 'flour'] }
+    };
+    
+    const category = categoryMap[categoryChoice];
+    const productType = category.products[parseInt(productChoice) - 1];
     
     try {
       const suppliers = await supplierService.listSuppliers(productType);
@@ -43,7 +80,11 @@ router.post('/', async (req, res) => {
       }
       
       // Store session data
-      db.ussdSessions.set(sessionId, { productType, suppliers });
+      db.ussdSessions.set(sessionId, { 
+        category: category.name,
+        productType, 
+        suppliers 
+      });
       
       let response = `CON ${productType.toUpperCase()} Suppliers:\n`;
       suppliers.slice(0, 3).forEach((s, i) => {
@@ -57,16 +98,16 @@ router.post('/', async (req, res) => {
   }
   
   // Supplier selected - enter quantity
-  if (text.match(/^1\*[1-4]\*[1-3]$/)) {
-    const response = 'CON Enter quantity (kg):';
+  if (text.match(/^1\*[1-5]\*[1-4]\*[1-3]$/)) {
+    const response = 'CON Enter quantity:';
     return res.send(response);
   }
   
   // Quantity entered - confirm order
-  if (text.match(/^1\*[1-4]\*[1-3]\*\d+$/)) {
+  if (text.match(/^1\*[1-5]\*[1-4]\*[1-3]\*\d+$/)) {
     const parts = text.split('*');
-    const supplierIndex = parseInt(parts[2]) - 1;
-    const quantity = parts[3];
+    const supplierIndex = parseInt(parts[3]) - 1;
+    const quantity = parts[4];
     
     const session = db.ussdSessions.get(sessionId);
     if (!session || !session.suppliers[supplierIndex]) {
@@ -76,7 +117,7 @@ router.post('/', async (req, res) => {
     const supplier = session.suppliers[supplierIndex];
     const total = supplier.price * parseInt(quantity);
     
-    const response = `CON Confirm Order:\n${quantity}kg ${session.productType}\nFrom: ${supplier.name}\nTotal: KES${total}\n1. Confirm\n2. Cancel`;
+    const response = `CON Confirm Order:\n${quantity} ${session.productType}\nFrom: ${supplier.name}\nTotal: KES${total}\n1. Confirm\n2. Cancel`;
     
     // Store order details in session
     session.selectedSupplier = supplier;
@@ -88,7 +129,7 @@ router.post('/', async (req, res) => {
   }
   
   // Order confirmed
-  if (text.match(/^1\*[1-4]\*[1-3]\*\d+\*1$/)) {
+  if (text.match(/^1\*[1-5]\*[1-4]\*[1-3]\*\d+\*1$/)) {
     const session = db.ussdSessions.get(sessionId);
     if (!session) {
       return res.send('END Session expired. Please try again.');
