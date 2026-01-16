@@ -1,22 +1,34 @@
 # AgriTrust & Trade
 
-**A trust-enabled agricultural supply chain platform for African buyers and retailers**
+**A trust-enabled commerce platform for African buyers, retailers, and traders across ALL product categories**
 
 ## 🌾 Problem Statement
 
-African agricultural supply chains face critical challenges:
-- **Trust Deficit**: Buyers cannot verify supplier authenticity or product quality before purchase
+African trade and commerce face critical challenges across ALL sectors (agriculture, retail, wholesale, manufacturing):
+- **Trust Deficit**: Buyers cannot verify supplier authenticity or product quality before purchase (affects ALL industries)
 - **Limited Access**: 70% of rural users rely on 2G feature phones without internet
-- **Payment Risk**: No secure escrow mechanisms lead to fraud and disputes
-- **Information Gap**: Low-literacy farmers and buyers struggle with complex digital systems
+- **Payment Risk**: No secure escrow mechanisms lead to fraud and disputes across all trade sectors
+- **Information Gap**: Small traders struggle with complex digital systems
 - **Tracking Failures**: No visibility into order status and delivery progress
 - **Financial Exclusion**: Small-scale buyers lack access to credit and flexible payment options
 
-**Result**: $4B+ annual losses in African agriculture due to fraud, spoilage, and supply chain inefficiencies.
+**Result**: $15B+ annual losses in African commerce due to fraud, spoilage, and supply chain inefficiencies across agriculture, retail, wholesale, and manufacturing.
 
 ## 💡 Solution Overview
 
-**AgriTrust & Trade** is a feature-phone-first platform that enables:
+**AgriTrust & Trade** is a feature-phone-first platform that enables trade across ALL product categories:
+
+### Product Categories Supported
+- 🌾 **Agriculture**: Maize, rice, seeds, fertilizer, livestock, dairy
+- 🏪 **Retail Goods**: Electronics, clothing, household items, cosmetics
+- 🏭 **Wholesale**: Bulk goods, raw materials, packaging
+- 🔧 **Hardware**: Tools, building materials, machinery parts
+- 📱 **Electronics**: Phones, accessories, computers
+- 🎨 **Crafts & Art**: Handmade goods, traditional crafts
+- 📚 **Books & Stationery**: Educational materials, office supplies
+- 💊 **Health Products**: Medical supplies, wellness products (regulated)
+
+### Core Features
 - ✅ **Supplier Verification**: Trust scores based on delivery history, ratings, and certifications
 - 📦 **Product Ordering**: USSD-based ordering for maize, rice, seeds, and fertilizer
 - 💰 **Secure Payments**: Mobile money escrow with automated release after delivery confirmation
@@ -29,6 +41,8 @@ African agricultural supply chains face critical challenges:
 - **Trust-First Design**: Blockchain-inspired trust scoring without blockchain complexity
 - **Escrow Protection**: Payments held until delivery confirmed by buyer
 - **Multi-Channel**: Same transaction accessible via USSD, SMS, voice, and web dashboard
+- **Universal**: Works for ANY product category - not limited to agriculture
+- **Scalable**: From small traders to large wholesalers
 
 ---
 
@@ -40,11 +54,17 @@ African agricultural supply chains face critical challenges:
 ```
 1. Dial *384*123#
 2. Select: 1. Buy Products
-3. Choose: 1. Maize | 2. Rice | 3. Seeds | 4. Fertilizer
-4. Enter quantity (e.g., 50 kg)
+3. Choose Category:
+   1. Agriculture (Maize, Rice, Seeds, Fertilizer)
+   2. Electronics (Phones, Laptops, Accessories)
+   3. Retail Goods (Clothing, Cosmetics, Household)
+   4. Hardware (Tools, Building Materials)
+   5. Wholesale (Bulk Orders)
+   6. More Categories...
+4. Select Product → Enter quantity
 5. View suppliers with trust scores:
-   - Kamau Farms ⭐⭐⭐⭐⭐ (98%) - KES 4,500
-   - Njeri Supplies ⭐⭐⭐⭐ (87%) - KES 4,200
+   - Kamau Supplies ⭐⭐⭐⭐⭐ (98%) - KES 4,500
+   - Njeri Traders ⭐⭐⭐⭐ (87%) - KES 4,200
 6. Select supplier
 7. Confirm order
 8. Pay via M-Pesa (escrow held)
@@ -53,16 +73,22 @@ African agricultural supply chains face critical challenges:
 
 #### Via SMS
 ```
-Buyer sends: ORDER MAIZE 50KG
+Buyer sends: ORDER PHONE SAMSUNG 1
 System replies: 
 "3 suppliers found:
-1. Kamau Farms ⭐98% KES4,500
-2. Njeri Supplies ⭐87% KES4,200
+1. TechHub Kenya ⭐98% KES15,000
+2. Gadget World ⭐87% KES14,500
 Reply with number to order"
 
 Buyer: 1
-System: "Order confirmed. Pay KES4,500 to 12345. Code: ORD-2847"
+System: "Order confirmed. Pay KES15,000 to 12345. Code: ORD-2847"
 ```
+
+**More Examples:**
+- `ORDER MAIZE 50KG` - Agricultural products
+- `ORDER LAPTOP HP 1` - Electronics
+- `ORDER CEMENT 10BAGS` - Building materials
+- `ORDER DRESS MEDIUM 2` - Retail clothing
 
 #### Via Voice/IVR
 ```
