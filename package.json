@@ -1,7 +1,7 @@
 {
-  "name": "africastalking-sandbox-suite",
+  "name": "agri-trade-trust",
   "version": "1.0.0",
-  "description": "Africa's Talking sandbox demo: 1-way SMS, 2-way SMS, Bulk SMS, USSD, Voice, Airtime",
+  "description": "AgriTrust & Trade - Trust-enabled agricultural supply chain platform for African buyers and retailers",
   "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
@@ -10,13 +10,19 @@
   },
   "keywords": [
     "africastalking",
-    "sms",
+    "agriculture",
+    "supply-chain",
+    "trust-scoring",
+    "escrow",
     "ussd",
+    "sms",
     "voice",
-    "airtime",
-    "sandbox"
+    "payments",
+    "mobile-money",
+    "agritech",
+    "africa"
   ],
-  "author": "",
+  "author": "AgriTrust Team",
   "license": "MIT",
   "dependencies": {
     "africastalking": "^0.5.8",

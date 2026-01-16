@@ -1,6 +1,8 @@
 const express = require('express');
 const at = require('../config/at');
 const { generateReply } = require('../services/ai');
+const supplierService = require('../services/supplierService');
+const orderService = require('../services/orderService');
 
 const router = express.Router();
 const sms = at.SMS;
@@ -130,9 +132,81 @@ router.post('/inbound', async (req, res) => {
       console.warn('[Inbound SMS][Guard] Missing or invalid "text" in payload');
     }
 
-    // AI-powered reply using Gemini
-    let aiText;
+    // AgriTrust command handling
+    let agriResponse = null;
     if (from && typeof text === 'string') {
+      const upperText = text.trim().toUpperCase();
+      
+      // ORDER command: ORDER MAIZE 50KG
+      if (upperText.startsWith('ORDER ')) {
+        try {
+          const parts = upperText.split(' ');
+          const productType = parts[1]?.toLowerCase();
+          const quantity = parts[2]?.replace(/[^\d]/g, '');
+          
+          if (productType && quantity) {
+            const suppliers = await supplierService.listSuppliers(productType);
+            if (suppliers.length > 0) {
+              agriResponse = `${suppliers.length} suppliers found:\n`;
+              suppliers.slice(0, 3).forEach((s, i) => {
+                agriResponse += `${i + 1}. ${s.name} ${s.stars} KES${s.price}\n`;
+              });
+              agriResponse += 'Reply with number to order';
+            } else {
+              agriResponse = `No suppliers available for ${productType}`;
+            }
+          }
+        } catch (e) {
+          console.error('[AgriTrust][ORDER] error:', e);
+        }
+      }
+      
+      // TRACK command: TRACK ORD-1234
+      else if (upperText.startsWith('TRACK ')) {
+        try {
+          const orderId = upperText.split(' ')[1];
+          const status = await orderService.trackOrder(orderId);
+          agriResponse = `Order: ${orderId}\nStatus: ${status.status}\nProduct: ${status.quantity}kg ${status.productType}`;
+        } catch (e) {
+          agriResponse = 'Order not found';
+        }
+      }
+      
+      // YES/NO for supplier confirmation
+      else if (upperText === 'YES' || upperText === 'NO') {
+        agriResponse = 'Command received. Use USSD *384*123# for full ordering.';
+      }
+      
+      // HELP command
+      else if (upperText === 'HELP' || upperText === 'MENU') {
+        agriResponse = 'AgriTrust Commands:\nORDER [product] [qty] - Place order\nTRACK [order-id] - Track order\nDial *384*123# for full menu';
+      }
+    }
+
+    // Send AgriTrust response if command was recognized
+    if (agriResponse && from) {
+      try {
+        const replyFrom = (!isSandbox && process.env.AT_FROM_SHORTCODE) ? String(process.env.AT_FROM_SHORTCODE) : (to || undefined);
+        const sendOptions = { to: [from], message: agriResponse };
+        if (replyFrom) sendOptions.from = replyFrom;
+        if (linkId) sendOptions.linkId = linkId;
+        console.log('[AgriTrust Reply][Prepare]', { to: from, from: replyFrom || '(default)' });
+        const sendResult = await sms.send(sendOptions);
+        const firstRecipient = sendResult?.SMSMessageData?.Recipients?.[0];
+        console.log('[AgriTrust Reply][Sent]', {
+          status: firstRecipient?.status || 'UNKNOWN',
+          statusCode: firstRecipient?.statusCode,
+          messageId: firstRecipient?.messageId,
+        });
+        return res.status(200).send('OK');
+      } catch (e) {
+        console.error('[AgriTrust Reply] failed:', e);
+      }
+    }
+
+    // AI-powered reply using Gemini (fallback for non-agri commands)
+    let aiText;
+    if (from && typeof text === 'string' && !agriResponse) {
       try {
         aiText = await generateReply(text, from);
         const replyFrom = (!isSandbox && process.env.AT_FROM_SHORTCODE) ? String(process.env.AT_FROM_SHORTCODE) : (to || undefined);
@@ -176,8 +250,8 @@ router.post('/inbound', async (req, res) => {
     }
 
     // Must respond 200 quickly
-    if (debug && aiText) {
-      return res.status(200).json({ ok: true, aiText });
+    if (debug && (aiText || agriResponse)) {
+      return res.status(200).json({ ok: true, aiText, agriResponse });
     }
     res.status(200).send('OK');
   } catch (err) {

@@ -16,7 +16,13 @@ app.use(express.urlencoded({ extended: true })); // Needed for USSD and AT webho
 
 // Health
 app.get('/health', (req, res) => {
-  res.json({ ok: true, service: "Africa's Talking Sandbox Suite", time: new Date().toISOString() });
+  res.json({ 
+    ok: true, 
+    service: "AgriTrust & Trade - Agricultural Supply Chain Platform", 
+    version: "1.0.0",
+    features: ["USSD", "SMS", "Voice", "Payments", "Trust Scoring"],
+    time: new Date().toISOString() 
+  });
 });
 
 // Routes
@@ -25,6 +31,11 @@ app.use('/ussd', require('./routes/ussd'));
 app.use('/voice', require('./routes/voice'));
 app.use('/airtime', require('./routes/airtime'));
 app.use('/whatsapp', require('./routes/whatsapp'));
+
+// AgriTrust & Trade routes
+app.use('/orders', require('./routes/agri-orders'));
+app.use('/suppliers', require('./routes/agri-suppliers'));
+app.use('/payments', require('./routes/agri-payments'));
 
 // 404
 app.use((req, res) => {
