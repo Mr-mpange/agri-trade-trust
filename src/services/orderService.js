@@ -1,4 +1,4 @@
-const africastalking = require('../config/africastalking');
+const africastalking = require('../config/at');
 const db = require('./database');
 
 const sms = africastalking.SMS;
