@@ -23,21 +23,29 @@ class OrderService {
     
     db.orders.set(orderId, order);
     
-    // Send SMS confirmation to buyer
-    await sms.send({
-      to: [buyerPhone],
-      message: `Order ${orderId} confirmed! ${quantity}kg ${productType}. Pay to complete order. Track: *384*123#`,
-      from: process.env.AT_SENDER_ID || 'AGRITRUST'
-    });
-    
-    // Notify supplier
-    const supplier = db.suppliers.get(supplierId);
-    if (supplier) {
+    // Send SMS confirmation to buyer (handle errors gracefully)
+    try {
       await sms.send({
-        to: [supplier.phone],
-        message: `New order ${orderId}: ${quantity}kg ${productType}. Reply YES to accept.`,
+        to: [buyerPhone],
+        message: `Order ${orderId} confirmed! ${quantity} ${productType}. Pay to complete order. Track: *384*34153#`,
         from: process.env.AT_SENDER_ID || 'AGRITRUST'
       });
+    } catch (e) {
+      console.warn('[Order SMS] Failed to send buyer confirmation:', e.message);
+    }
+    
+    // Notify supplier (handle errors gracefully)
+    const supplier = db.suppliers.get(supplierId);
+    if (supplier) {
+      try {
+        await sms.send({
+          to: [supplier.phone],
+          message: `New order ${orderId}: ${quantity} ${productType}. Reply YES to accept.`,
+          from: process.env.AT_SENDER_ID || 'AGRITRUST'
+        });
+      } catch (e) {
+        console.warn('[Order SMS] Failed to send supplier notification:', e.message);
+      }
     }
     
     return order;

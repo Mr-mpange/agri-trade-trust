@@ -320,7 +320,7 @@ router.post('/inbound', async (req, res) => {
         const sendOptions = { to: [from], message: agriResponse };
         if (replyFrom) sendOptions.from = replyFrom;
         if (linkId) sendOptions.linkId = linkId;
-        console.log('[AgriTrust Reply][Prepare]', { to: from, from: replyFrom || '(default)' });
+        console.log('[AgriTrust Reply][Prepare]', { to: from, from: replyFrom || '(default)', message: agriResponse });
         const sendResult = await sms.send(sendOptions);
         const firstRecipient = sendResult?.SMSMessageData?.Recipients?.[0];
         console.log('[AgriTrust Reply][Sent]', {
@@ -328,6 +328,11 @@ router.post('/inbound', async (req, res) => {
           statusCode: firstRecipient?.statusCode,
           messageId: firstRecipient?.messageId,
         });
+        
+        // Debug mode: return reply in response
+        if (debug) {
+          return res.status(200).json({ ok: true, reply: agriResponse, sent: true });
+        }
         return res.status(200).send('OK');
       } catch (e) {
         console.error('[AgriTrust Reply] failed:', e);
