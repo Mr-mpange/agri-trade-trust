@@ -1,8 +1,6 @@
 const africastalking = require('../config/at');
 const db = require('./database');
 
-const sms = africastalking.SMS;
-
 class OrderService {
   async createOrder({ buyerPhone, productType, quantity, supplierId }) {
     // Generate order ID
@@ -23,30 +21,8 @@ class OrderService {
     
     db.orders.set(orderId, order);
     
-    // Send SMS confirmation to buyer (handle errors gracefully)
-    try {
-      await sms.send({
-        to: [buyerPhone],
-        message: `Order ${orderId} confirmed! ${quantity} ${productType}. Pay to complete order. Track: *384*34153#`,
-        from: process.env.AT_SENDER_ID || 'AGRITRUST'
-      });
-    } catch (e) {
-      console.warn('[Order SMS] Failed to send buyer confirmation:', e.message);
-    }
-    
-    // Notify supplier (handle errors gracefully)
-    const supplier = db.suppliers.get(supplierId);
-    if (supplier) {
-      try {
-        await sms.send({
-          to: [supplier.phone],
-          message: `New order ${orderId}: ${quantity} ${productType}. Reply YES to accept.`,
-          from: process.env.AT_SENDER_ID || 'AGRITRUST'
-        });
-      } catch (e) {
-        console.warn('[Order SMS] Failed to send supplier notification:', e.message);
-      }
-    }
+    // Note: SMS notifications are handled by the calling service (SMS route, USSD route, etc.)
+    // This keeps the order service focused on order creation only
     
     return order;
   }
